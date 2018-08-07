@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+	<title>DatabaseDemo</title>
+	#parse("comm/comm.vm")
+	#parse("comm/easyui.vm")
+    <script type="text/javascript" src="resource/js/db/databaseDemo.js"></script>
+</head>
+<body>
+    <h2>BaseDao中定义的通用方法示例</h2>
+	<div>
+		id:
+		<input class="easyui-textbox" id="get_id" style="width:300px;height:24px">
+		name:
+		<input class="easyui-textbox" id="get_name" style="width:50px;height:24px">
+		countNum:
+		<input class="easyui-textbox" id="get_countNum" style="width:50px;height:24px">
+		customTime:
+		<input class="easyui-datetimebox" id="get_customTime" style="width:160px;height:24px">
+		createTime:
+		<input class="easyui-textbox" id="get_createTime" style="width:160px;height:24px" readonly="readonly">
+		updateTime:
+		<input class="easyui-textbox" id="get_updateTime" style="width:160px;height:24px" readonly="readonly">
+	</div>	
+	
+	<div>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="baseDao_save();">BaseDao save方法保存一条记录</a>
+    </div>
+	<div>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="baseDao_update();">BaseDao update方法更新一条记录</a>
+    </div>
+	<div>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="baseDao_saveOrUpdate();">BaseDao saveOrUpdate方法</a>
+	</div>
+	<div>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="baseDao_get();">BaseDao get方法根据主键获取记录</a>
+	</div>
+	
+	
+	
+    <h2 style="margin-top:50px;">JdbcTemplageSupport</h2>
+	<table id="dg1" class="easyui-datagrid" title="JDBC分页查找" style="width:1200px;height:400px"
+			data-options="
+			rownumbers:true,
+			singleSelect:true,
+			iconCls:'icon-ok',
+			url:'jdbcPageQueryDemo.do',
+			pagination : true,
+			method:'post',
+			fitColumns: true,
+			toolbar:'#dg1_toolbar'
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'id',width:300">ID</th>
+				<th data-options="field:'name',width:100">Name</th>
+				<th data-options="field:'countNum',width:100,align:'right'">Count</th>
+				<th data-options="field:'customTime',width:200,align:'right',formatter: dateFormat2Second">CustomTime</th>
+				<th data-options="field:'createTime',width:200,align:'right',formatter: dateFormat2Second">CreateTime</th>
+				<th data-options="field:'updateTime',width:200,align:'right',formatter: dateFormat2Second">UpdateTime</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="dg1_toolbar" style="padding:2px 5px;">
+		CustomTime From: <input id="dg1_startTime" class="easyui-datetimebox" style="width:150px">
+		To: <input id="dg1_endTime" class="easyui-datetimebox" style="width:150px">
+		Name: <input id="dg1_name" class="easyui-textbox" style="width:100px">
+		Count: <input id="dg1_countNum" class="easyui-textbox" style="width:50px">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="dg1_search()">查询</a>
+	</div>
+	
+	<h2 style="margin-top:50px;">HibernateTemplateSupport</h2>
+	<table id="dg2" class="easyui-datagrid" title="Hibernate分页查找" style="width:1200px;height:400px"
+			data-options="
+			rownumbers:true,
+			singleSelect:true,
+			iconCls:'icon-ok',
+			url:'hibernatePageQueryDemo.do',
+			pagination : true,
+			method:'post',
+			fitColumns: true,
+			toolbar:'#dg2_toolbar'
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'id',width:300">ID</th>
+				<th data-options="field:'name',width:100">Name</th>
+				<th data-options="field:'countNum',width:100,align:'right'">Count</th>
+				<th data-options="field:'customTime',width:200,align:'right',formatter: dateFormat2Second">CustomTime</th>
+				<th data-options="field:'createTime',width:200,align:'right',formatter: dateFormat2Second">CreateTime</th>
+				<th data-options="field:'updateTime',width:200,align:'right',formatter: dateFormat2Second">UpdateTime</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="dg2_toolbar" style="padding:2px 5px;">
+		CustomTime From: <input id="dg2_startTime" class="easyui-datetimebox" style="width:150px">
+		To: <input id="dg2_endTime" class="easyui-datetimebox" style="width:150px">
+		Name: <input id="dg2_name" class="easyui-textbox" style="width:100px">
+		Count: <input id="dg2_countNum" class="easyui-textbox" style="width:50px">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="dg2_search()">查询</a>
+	</div>
+	<div style="margin-top:30px"/>
+	<table id="dg3" class="easyui-datagrid" title="findBy方法 根据属性名和属性值查询对象" style="width:1200px;height:400px;"
+			data-options="
+			rownumbers:true,
+			singleSelect:true,
+			iconCls:'icon-ok',
+			url:'findBy.do',
+			method:'post',
+			fitColumns: true,
+			toolbar:'#dg3_toolbar'
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'id',width:300">ID</th>
+				<th data-options="field:'name',width:100">Name</th>
+				<th data-options="field:'countNum',width:100,align:'right'">Count</th>
+				<th data-options="field:'customTime',width:200,align:'right',formatter: dateFormat2Second">CustomTime</th>
+				<th data-options="field:'createTime',width:200,align:'right',formatter: dateFormat2Second">CreateTime</th>
+				<th data-options="field:'updateTime',width:200,align:'right',formatter: dateFormat2Second">UpdateTime</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="dg3_toolbar" style="padding:2px 5px;">
+		Name: <input id="dg3_name" class="easyui-textbox" style="width:100px">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="dg3_search()">查询</a>
+	</div>
+	<div style="margin-top:30px"/>
+	<table id="dg4" class="easyui-datagrid" title="findBy方法并按照CustomTime ASC排序  根据属性名和属性值查询对象,带排序参数" style="width:1200px;height:400px;"
+			data-options="
+			rownumbers:true,
+			singleSelect:true,
+			iconCls:'icon-ok',
+			url:'findByAndOrderBy.do',
+			method:'post',
+			fitColumns: true,
+			toolbar:'#dg4_toolbar'
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'id',width:300">ID</th>
+				<th data-options="field:'name',width:100">Name</th>
+				<th data-options="field:'countNum',width:100,align:'right'">Count</th>
+				<th data-options="field:'customTime',width:200,align:'right',formatter: dateFormat2Second">CustomTime</th>
+				<th data-options="field:'createTime',width:200,align:'right',formatter: dateFormat2Second">CreateTime</th>
+				<th data-options="field:'updateTime',width:200,align:'right',formatter: dateFormat2Second">UpdateTime</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="dg4_toolbar" style="padding:2px 5px;">
+		Name: <input id="dg4_name" class="easyui-textbox" style="width:100px">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="dg4_search()">查询</a>
+	</div>
+	<div style="margin-top:30px"/>
+	<table id="dg5" class="easyui-datagrid" title="findByValues方法  根据实体某项属性名及其取值数组查询" style="width:1200px;height:400px;"
+			data-options="
+			rownumbers:true,
+			singleSelect:true,
+			iconCls:'icon-ok',
+			url:'findByValues.do',
+			method:'post',
+			fitColumns: true,
+			toolbar:'#dg5_toolbar'
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'id',width:300">ID</th>
+				<th data-options="field:'name',width:100">Name</th>
+				<th data-options="field:'countNum',width:100,align:'right'">Count</th>
+				<th data-options="field:'customTime',width:200,align:'right',formatter: dateFormat2Second">CustomTime</th>
+				<th data-options="field:'createTime',width:200,align:'right',formatter: dateFormat2Second">CreateTime</th>
+				<th data-options="field:'updateTime',width:200,align:'right',formatter: dateFormat2Second">UpdateTime</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="dg5_toolbar" style="padding:2px 5px;">
+		Name: <input id="dg5_name" class="easyui-textbox" style="width:100px">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="dg5_search()">查询</a>
+	</div>
+</body>
+</html>
