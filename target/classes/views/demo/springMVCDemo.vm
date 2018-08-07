@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+	<title>SRPING_MVC_DEMO</title>
+	#parse("comm/comm.vm")
+	<script type="text/javascript" src="resource/js/demo/springMVCDemo.js"></script>
+</head>
+<body style="background: beige;">
+	AJAX请求请按F12从控制台看结果
+	<div>
+		<button onclick="springMVCReturnJSON();">使用POST请求JSON数据示例</button>
+    </div>
+	<div>
+		<button onclick="springMVCRequestParam1();">使用@RequestParam向后台传递参数示例</button>
+    </div>
+	<div>
+		<button onclick="springMVCRequestParam2();">使用@ModelAttribute以对象的方式向后台传递参数示例</button>
+    </div>
+	<div>
+		<button onclick="springMVCRequestParam3();">直接使用HttpServletRequest向后台传递参数示例</button>
+	</div>
+	<div>
+		<form action="toSpringMVCDemoWithReturn" method="post">  
+	      <input name="submit" type="submit" value="带数据返回的页面跳转示例" />  
+	    </form>  
+    </div>
+    <div >
+		<form action="exceptionForPageJump" method="post">  
+	      <input name="submit" type="submit" value="界面跳转异常示例" />  
+	    </form>  
+    </div>
+    <div >
+		<button onclick="exceptionForAJAX();">AJAX请求异常示例</button>
+    </div>
+</body>
+</html>

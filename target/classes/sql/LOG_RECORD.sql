@@ -1,0 +1,59 @@
+/*
+Navicat Oracle Data Transfer
+Oracle Client Version : 10.2.0.5.0
+
+Source Server         : 10.1.111.135SPRINGMVC
+Source Server Version : 110100
+Source Host           : 10.1.111.135:1521
+Source Schema         : SPRINGMVC
+
+Target Server Type    : ORACLE
+Target Server Version : 110100
+File Encoding         : 65001
+
+Date: 2018-03-19 10:52:57
+*/
+
+
+-- ----------------------------
+-- Table structure for LOG_RECORD
+-- ----------------------------
+DROP TABLE "SPRINGMVC"."LOG_RECORD";
+CREATE TABLE "SPRINGMVC"."LOG_RECORD" (
+"LOG_ID" VARCHAR2(100 BYTE) NOT NULL ,
+"OPERATION_START_TIME" DATE NULL ,
+"OPERATION_END_TIME" DATE NULL ,
+"OPERATION_ELAPSED_TIME_MILLIS" NUMBER(32) NULL ,
+"OPERATION_TYPE" VARCHAR2(255 BYTE) NULL ,
+"OPERATION_DESC" VARCHAR2(255 BYTE) NULL ,
+"OPERATION_USERNAME" VARCHAR2(100 BYTE) NULL ,
+"OPERATION_USER_ID" VARCHAR2(100 BYTE) NULL ,
+"TARGET_CLASS" VARCHAR2(255 BYTE) NULL ,
+"TARGET_METHOD" VARCHAR2(255 BYTE) NULL ,
+"TARGET_METHOD_RESULT" VARCHAR2(2000 BYTE) NULL ,
+"TARGET_METHOD_EXCEPTION" VARCHAR2(2000 BYTE) NULL ,
+"TARGET_METHOD_PARAMS" VARCHAR2(2000 BYTE) NULL ,
+"POINTCUT_METHOD_NAME" VARCHAR2(255 BYTE) NULL 
+)
+LOGGING
+NOCOMPRESS
+NOCACHE
+
+;
+
+-- ----------------------------
+-- Indexes structure for table LOG_RECORD
+-- ----------------------------
+
+-- ----------------------------
+-- Checks structure for table LOG_RECORD
+-- ----------------------------
+ALTER TABLE "SPRINGMVC"."LOG_RECORD" ADD CHECK ("LOG_ID" IS NOT NULL);
+ALTER TABLE "SPRINGMVC"."LOG_RECORD" ADD CHECK ("LOG_ID" IS NOT NULL);
+ALTER TABLE "SPRINGMVC"."LOG_RECORD" ADD CHECK ("LOG_ID" IS NOT NULL);
+ALTER TABLE "SPRINGMVC"."LOG_RECORD" ADD CHECK ("LOG_ID" IS NOT NULL);
+
+-- ----------------------------
+-- Primary Key structure for table LOG_RECORD
+-- ----------------------------
+ALTER TABLE "SPRINGMVC"."LOG_RECORD" ADD PRIMARY KEY ("LOG_ID");
